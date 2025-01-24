@@ -1,0 +1,37 @@
+FROM arm64v8/python:3.11.10-alpine
+
+RUN apk update
+RUN echo "http://dl-8.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories
+RUN apk --no-cache --update-cache add gcc gfortran build-base wget freetype-dev libpng-dev openblas-dev
+RUN ln -s /usr/include/locale.h /usr/include/xlocale.
+
+RUN apk add --no-cache linux-headers
+RUN apk add --no-cache cython
+RUN apk add --no-cache cmake \
+    git \
+    libjpeg-turbo-dev \
+    libwebp-dev \
+    tiff-dev \
+    v4l-utils \
+    ffmpeg-dev \
+    lapack-dev \
+    python3-dev \
+    musl-dev \
+    pythran
+
+RUN rm -rf /var/cache/apk/*
+
+# 필요한 Python 패키지 설치
+# RUN pip install numpy scipy opencv-python-headless
+
+WORKDIR /app
+COPY requirements.txt .
+
+RUN pip install --upgrade pip
+RUN pip install --upgrade setuptools
+RUN python -m pip install --upgrade setuptools
+
+RUN pip install --no-cache-dir -r requirements.txt
+
+# OpenCV 버전 확인
+RUN python -c "import cv2; print(cv2.__version__)"

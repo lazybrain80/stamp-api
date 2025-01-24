@@ -1,0 +1,9 @@
+.venv
+.vscode
+__pycache__
+*/__pycache__
+wm_image_ground
+wm_validater_ground
+venv
+config/config.dev.json
+config/config.prod.json

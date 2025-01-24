@@ -1,0 +1,31 @@
+{
+    "postgres": {
+        "HOST": "your_postgres_host",
+        "PORT": "5432",
+        "USER": "your_postgres_username",
+        "PASSWORD": "your_postgres_password",
+        "DB": "your_postgres_database"
+    },
+    "mongodb": {
+        "URL": "mongodb://stamp-user:1234@127.0.0.1:27017/secure_stamp?authSource=admin",
+        "DB": "secure_stamp",
+        "TLS": false,
+        "TLS_CA_FILE": null
+    },
+    "auth": {
+        "google": {
+            "CLIENT_ID": ""
+        }
+    },
+    "basic-license": {
+        "max_creation": 5,
+        "max_validation": 50
+    },
+    "cloudinary": {
+        "cloud_name": "",
+        "api_key": "",
+        "api_secret": "",
+        "secure": true,
+        "expire_days": 1
+    }
+}
